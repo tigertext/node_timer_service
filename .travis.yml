@@ -1,0 +1,35 @@
+sudo: false
+language: node_js
+node_js:
+- 4.2.3
+env:
+- CXX=g++-4.8
+script:
+- npm install
+- echo "node_timer_service-${TRAVIS_BUILD_NUMBER}" > git.info
+- echo "Built on the ${TRAVIS_BRANCH} branch" >> git.info
+- git log | head -1 >> git.info
+- mkdir release
+- tar --exclude=release -czvf ${TRAVIS_BUILD_DIR}/release/node_timer_service-${TRAVIS_BUILD_NUMBER}.tar.gz
+  *
+- echo "Done making release tarball"
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+deploy:
+  provider: s3
+  access_key_id: AKIAJ27RLK3FGA3NYIEA
+  secret_access_key:
+    secure: "hU6pbL01T/g9roxgjDXtfT/l4iWLaKUxE72CM51ALMmZuOrqWhJUpZR6r9qPKAe7fjvqg8V86pLhTaMdsDlRb8isb8IgpPY9uAc9769bMet+Kb5CcfY0lh9GRXRmKvgLrVPM7barGffo2uBdiTdPfD4c0tMISR5WeVDiSCo5OOM="
+  bucket: code-deploy
+  local_dir: ${TRAVIS_BUILD_DIR}/release
+  skip_cleanup: true
+  acl: private
+  file: node_timer_service-${TRAVIS_BUILD_NUMBER}.tar.gz
+  upload-dir: node_timer_service
+  on:
+    all_branches: true
+    repo: tigertext/node_timer_service
