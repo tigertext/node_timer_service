@@ -21,9 +21,9 @@ addons:
     - g++-4.8
 deploy:
   provider: s3
-  access_key_id: AKIAJ27RLK3FGA3NYIEA
+  access_key_id: AKIAIP5QI2LZLEQA2JOA
   secret_access_key:
-    secure: "hU6pbL01T/g9roxgjDXtfT/l4iWLaKUxE72CM51ALMmZuOrqWhJUpZR6r9qPKAe7fjvqg8V86pLhTaMdsDlRb8isb8IgpPY9uAc9769bMet+Kb5CcfY0lh9GRXRmKvgLrVPM7barGffo2uBdiTdPfD4c0tMISR5WeVDiSCo5OOM="
+    secure: "tFLMjEwCtrDPM+OQ2ej+hwDGGrrtKrHKiPRNug+cvcGyboDhvrztQKW64tFvIiwBLoR3BaaKA5R7oihsUhYN8A6b9etJkRAmMR6UxzSFW9+Io9AfvlHG2pTadDSy+6Tvu/Cy8QGCb0I3RlJZ9WTT6uiaIlfTN0hF13JaqVSabuY="
   bucket: code-deploy
   local_dir: ${TRAVIS_BUILD_DIR}/release
   skip_cleanup: true
