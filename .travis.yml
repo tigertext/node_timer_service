@@ -21,9 +21,8 @@ addons:
     - g++-4.8
 deploy:
   provider: s3
-  access_key_id: AKIAIP5QI2LZLEQA2JOA
-  secret_access_key:
-    secure: "tFLMjEwCtrDPM+OQ2ej+hwDGGrrtKrHKiPRNug+cvcGyboDhvrztQKW64tFvIiwBLoR3BaaKA5R7oihsUhYN8A6b9etJkRAmMR6UxzSFW9+Io9AfvlHG2pTadDSy+6Tvu/Cy8QGCb0I3RlJZ9WTT6uiaIlfTN0hF13JaqVSabuY="
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: code-deploy
   local_dir: ${TRAVIS_BUILD_DIR}/release
   skip_cleanup: true
